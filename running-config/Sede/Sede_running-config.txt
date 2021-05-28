@@ -95,6 +95,9 @@ router eigrp 1
  network 192.168.10.192 0.0.0.31
  network 192.168.10.224 0.0.0.31
  network 10.0.0.0 0.0.0.3
+ network 192.168.10.0 0.0.0.31
+ network 192.168.10.32 0.0.0.15
+ network 192.168.10.48 0.0.0.7
  
 !
 ip nat inside source list 1 interface Serial0/0/0 overload
