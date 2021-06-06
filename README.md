@@ -4,6 +4,6 @@
 ##Address:
 
 | Primer encabezado | Segundo encabezado | Primer encabezado | Segundo encabezado | Primer encabezado |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
 | Primer encabezado | Segundo encabezado | Primer encabezado | Segundo encabezado | Primer encabezado |
 | Primer encabezado | Segundo encabezado | Primer encabezado | Segundo encabezado | Primer encabezado |
