@@ -3,8 +3,7 @@
 
 ##Address:
 
-|Frutas.pt|
-| Primer encabezado | Segundo encabezado |
-| ------------- | ------------- |
+| Primer encabezado | Segundo encabezado | Primer encabezado | Segundo encabezado | Primer encabezado |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | Contenido de la celda  | Contenido de la celda  |
 | Contenido de la celda  | Contenido de la celda  |
