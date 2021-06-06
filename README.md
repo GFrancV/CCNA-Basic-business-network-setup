@@ -5,5 +5,5 @@
 
 | Primer encabezado | Segundo encabezado | Primer encabezado | Segundo encabezado | Primer encabezado |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Contenido de la celda  | Contenido de la celda  |
-| Contenido de la celda  | Contenido de la celda  |
+| Primer encabezado | Segundo encabezado | Primer encabezado | Segundo encabezado | Primer encabezado |
+| Primer encabezado | Segundo encabezado | Primer encabezado | Segundo encabezado | Primer encabezado |
