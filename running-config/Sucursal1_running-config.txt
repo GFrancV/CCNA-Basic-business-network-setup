@@ -8,6 +8,8 @@ hostname Sucursal1
 !
 !
 !
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
 !
 !
 !
@@ -68,9 +70,8 @@ interface Serial0/0/0
  ip address 192.168.10.226 255.255.255.252
 !
 interface Serial0/0/1
- no ip address
- clock rate 2000000
- shutdown
+ ip address 192.168.10.233 255.255.255.252
+ clock rate 64000
 !
 interface Vlan1
  no ip address
@@ -81,6 +82,7 @@ router eigrp 1
  network 192.168.10.96 0.0.0.15
  network 192.168.10.112 0.0.0.7
  network 192.168.10.224 0.0.0.3
+ network 192.168.10.232 0.0.0.3
  
 !
 ip classless
@@ -91,16 +93,24 @@ ip flow-export version 9
 !
 no cdp run
 !
+banner motd @
+------------------------------------------------
+                 Sucursal Frutas.pt
+------------------------------------------------
+@
 !
 !
 !
 !
 !
 line con 0
+ password cisco
+ login
 !
 line aux 0
 !
 line vty 0 4
+ password cisco
  login
 !
 !

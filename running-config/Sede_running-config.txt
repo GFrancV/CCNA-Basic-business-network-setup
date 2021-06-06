@@ -8,6 +8,8 @@ hostname Sede
 !
 !
 !
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
 !
 !
 !
@@ -23,8 +25,22 @@ license udi pid CISCO2811/K9 sn FTX10174KL3-
 !
 !
 !
+crypto isakmp policy 10
+ encr aes
+ authentication pre-share
+ group 2
+!
+crypto isakmp key cisco address 10.0.0.6
 !
 !
+!
+crypto ipsec transform-set VPN-SET esp-3des esp-sha-hmac
+!
+crypto map VPN-MAP 10 ipsec-isakmp 
+ description VPN connection to Ligacao Residencial
+ set peer 10.0.0.6
+ set transform-set VPN-SET 
+ match address 110
 !
 !
 !
@@ -54,21 +70,25 @@ interface FastEthernet0/1.10
  encapsulation dot1Q 10
  ip address 192.168.10.30 255.255.255.224
  ip helper-address 192.168.10.193
+ ip nat inside
 !
 interface FastEthernet0/1.20
  encapsulation dot1Q 20
  ip address 192.168.10.46 255.255.255.240
  ip helper-address 192.168.10.193
+ ip nat inside
 !
 interface FastEthernet0/1.30
  encapsulation dot1Q 30
  ip address 192.168.10.54 255.255.255.248
  ip helper-address 192.168.10.193
+ ip nat inside
 !
 interface Serial0/0/0
  ip address 10.0.0.2 255.255.255.252
  ip nat outside
  clock rate 64000
+ crypto map VPN-MAP
 !
 interface Serial0/0/1
  no ip address
@@ -76,15 +96,14 @@ interface Serial0/0/1
  shutdown
 !
 interface Serial0/1/0
- ip address 192.168.10.225 255.255.255.224
+ ip address 192.168.10.225 255.255.255.252
  ip nat inside
  clock rate 64000
 !
 interface Serial0/1/1
- no ip address
+ ip address 192.168.10.229 255.255.255.252
  ip nat inside
- clock rate 2000000
- shutdown
+ clock rate 64000
 !
 interface Vlan1
  no ip address
@@ -93,11 +112,13 @@ interface Vlan1
 router eigrp 1
  redistribute static 
  network 192.168.10.192 0.0.0.31
- network 192.168.10.224 0.0.0.31
  network 10.0.0.0 0.0.0.3
  network 192.168.10.0 0.0.0.31
  network 192.168.10.32 0.0.0.15
  network 192.168.10.48 0.0.0.7
+ network 192.168.10.224 0.0.0.3
+ network 192.168.10.228 0.0.0.3
+ network 192.168.1.0
  
 !
 ip nat inside source list 1 interface Serial0/0/0 overload
@@ -108,17 +129,26 @@ ip flow-export version 9
 !
 !
 access-list 1 permit 192.168.10.0 0.0.0.255
+access-list 110 permit ip 192.168.10.0 0.0.0.255 192.168.1.0 0.0.0.255
 !
+banner motd @
+-----------------------------------------------
+              Sede Frutas.pt
+-----------------------------------------------
+@
 !
 !
 !
 !
 !
 line con 0
+ password cisco
+ login
 !
 line aux 0
 !
 line vty 0 4
+ password cisco
  login
 !
 !
